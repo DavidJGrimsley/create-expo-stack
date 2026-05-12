@@ -22,7 +22,8 @@ export function configureProjectFiles(
   toolbox: Toolbox,
   cliResults: CliResults,
   internalizationPackage: AvailablePackages | undefined,
-  stateManagementPackage: AvailablePackages | undefined
+  stateManagementPackage: AvailablePackages | undefined,
+  softwareMansionPackages: AvailablePackages[] = []
 ): string[] {
   // Define the files common to all templates to be generated
   let baseFiles = [
@@ -135,6 +136,20 @@ export function configureProjectFiles(
       files = [...files, ...nativewindFiles];
     }
 
+    if (stylingPackage?.name === 'uniwind') {
+      const uniwindFiles = [
+        'packages/nativewind/components/ScreenContent.tsx.ejs',
+        'packages/nativewind/components/EditScreenInfo.tsx.ejs',
+        'packages/uniwind/global.css'
+      ];
+
+      if (navigationPackage?.name !== 'expo-router') {
+        uniwindFiles.push('packages/uniwind/metro.config.js.ejs');
+      }
+
+      files = [...files, ...uniwindFiles];
+    }
+
     // add unistyles files if needed
     // modify base files with unis specifications
     if (stylingPackage?.name === 'unistyles') {
@@ -158,7 +173,7 @@ export function configureProjectFiles(
       ];
 
       // add the necessary components for the navigation
-      if (stylingPackage?.name === 'nativewind') {
+      if (stylingPackage?.name === 'nativewind' || stylingPackage?.name === 'uniwind') {
         reactNavigationFiles.push('packages/nativewind/components/Button.tsx.ejs');
         reactNavigationFiles.push('packages/nativewind/components/BackButton.tsx.ejs');
       } else if (stylingPackage?.name === 'unistyles') {
@@ -215,7 +230,7 @@ export function configureProjectFiles(
     if (navigationPackage?.name === 'expo-router') {
       let expoRouterFiles = ['packages/expo-router/expo-env.d.ts', 'packages/expo-router/metro.config.js.ejs'];
 
-      if (stylingPackage?.name === 'nativewind') {
+      if (stylingPackage?.name === 'nativewind' || stylingPackage?.name === 'uniwind') {
         expoRouterFiles.push('packages/nativewind/components/Container.tsx.ejs');
         expoRouterFiles.push('packages/nativewind/components/Button.tsx.ejs');
       } else if (stylingPackage?.name === 'unistyles') {
@@ -323,6 +338,10 @@ export function configureProjectFiles(
   if (stateManagementPackage?.name === 'zustand') {
     const zustandFiles = ['packages/zustand/store/store.ts.ejs'];
     files = [...files, ...zustandFiles];
+  }
+
+  if (softwareMansionPackages.length > 0) {
+    files = Array.from(new Set(files));
   }
 
   // Add npmrc file if user is using pnpm

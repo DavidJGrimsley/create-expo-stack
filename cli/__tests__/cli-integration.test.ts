@@ -201,6 +201,44 @@ for (const packageManager of packageManagers) {
   }
 }
 
+test(`generates Uniwind, web platform, and Software Mansion optional packages`, async () => {
+  await generateProject({
+    projectName,
+    flags: [
+      '--expo-router',
+      '--uniwind',
+      '--react-native-reanimated',
+      '--react-native-worklets',
+      '--react-native-gesture-handler',
+      '--react-native-screens',
+      '--react-native-svg',
+      '--react-native-keyboard-controller',
+      '--no-install',
+      '--bun',
+      '--overwrite'
+    ]
+  });
+
+  const pkgjson = await Bun.file(`${pathToProject}/package.json`).json();
+  expect(pkgjson.dependencies.uniwind).toBeDefined();
+  expect(pkgjson.devDependencies.tailwindcss).toBeDefined();
+  expect(pkgjson.dependencies['react-native-reanimated']).toBeDefined();
+  expect(pkgjson.dependencies['react-native-worklets']).toBeDefined();
+  expect(pkgjson.dependencies['react-native-gesture-handler']).toBeDefined();
+  expect(pkgjson.dependencies['react-native-screens']).toBeDefined();
+  expect(pkgjson.dependencies['react-native-svg']).toBeDefined();
+  expect(pkgjson.dependencies['react-native-keyboard-controller']).toBeDefined();
+
+  const appJson = await Bun.file(`${pathToProject}/app.json`).json();
+  expect(appJson.expo.platforms).toContain('web');
+
+  const globalCss = await Bun.file(`${pathToProject}/global.css`).text();
+  expect(globalCss).toContain("@import 'uniwind'");
+
+  const metroConfig = await Bun.file(`${pathToProject}/metro.config.js`).text();
+  expect(metroConfig).toContain('withUniwindConfig');
+});
+
 // i18next - COMMENTED OUT - Only testing specific configurations
 // test(`generates a default project with i18n`, async () => {
 //   const output = await generateProject({

@@ -48,9 +48,18 @@ export function showHelp(info, highlight, warning) {
   info('    	--vexo-analytics  Use Vexo Analytics for analytics');
   info('');
   highlight('   Styling Package Options');
+  info('    	--uniwind        Use Uniwind and Tailwind v4 for styling');
   info('    	--nativewind      Use Nativewind for styling');
   info('    	--unistyles       Use Unistyles for styling');
   info('	--stylesheet      Use StyleSheet for styling');
+  info('');
+  highlight('   Software Mansion Package Options');
+  info('    	--react-native-reanimated         Add react-native-reanimated');
+  info('    	--react-native-worklets           Add react-native-worklets');
+  info('    	--react-native-gesture-handler    Add react-native-gesture-handler');
+  info('    	--react-native-screens            Add react-native-screens');
+  info('    	--react-native-svg                  Add react-native-svg');
+  info('    	--react-native-keyboard-controller  Add react-native-keyboard-controller');
   info('');
   highlight('   Internationalization');
   info('    	--i18next         Use i18next and react-i18next for internationalization');

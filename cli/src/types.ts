@@ -19,12 +19,25 @@ export const availablePackages = [
   'nwui',
   'react-navigation',
   'reactNavigation',
+  'gesture-handler',
+  'gestureHandler',
+  'reanimated',
   'react-native-gesture-handler',
   'react-native-reanimated',
+  'react-native-keyboard-controller',
+  'react-native-screens',
+  'react-native-svg',
+  'react-native-worklets',
+  'keyboard-controller',
+  'keyboardController',
   'reactnavigation',
+  'screens',
   'stylesheet',
   'supabase',
+  'svg',
+  'uniwind',
   'unistyles',
+  'worklets',
   'i18next',
   'zustand',
   'vexo-analytics'
@@ -36,7 +49,7 @@ export type NavigationSelect = 'react-navigation' | 'expo-router' | undefined;
 
 export type NavigationTypes = 'stack' | 'tabs' | 'drawer + tabs' | undefined;
 
-export type StylingSelect = 'nativewind' | 'stylesheet' | 'unistyles' | 'nativewindui';
+export type StylingSelect = 'nativewind' | 'stylesheet' | 'unistyles' | 'nativewindui' | 'uniwind';
 
 export type PackageManager = 'yarn' | 'npm' | 'pnpm' | 'bun';
 
@@ -45,6 +58,14 @@ export type StateManagementSelect = 'zustand' | undefined;
 export type Internalization = 'i18next';
 
 export type Analytics = 'vexo-analytics';
+
+export type SoftwareMansionSelect =
+  | 'react-native-gesture-handler'
+  | 'react-native-reanimated'
+  | 'react-native-keyboard-controller'
+  | 'react-native-screens'
+  | 'react-native-svg'
+  | 'react-native-worklets';
 
 export type SelectedComponents =
   | 'action-sheet'
@@ -62,7 +83,14 @@ export type SelectedComponents =
 
 export type AvailablePackages = {
   name: (typeof availablePackages)[number];
-  type: 'navigation' | 'styling' | 'authentication' | 'internationalization' | 'state-management' | 'analytics';
+  type:
+    | 'navigation'
+    | 'styling'
+    | 'authentication'
+    | 'internationalization'
+    | 'state-management'
+    | 'analytics'
+    | 'software-mansion';
   options?: { selectedComponents?: SelectedComponents[]; type?: NavigationTypes };
 };
 

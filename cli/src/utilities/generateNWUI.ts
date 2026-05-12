@@ -2,7 +2,7 @@ import { GluegunToolbox } from 'gluegun';
 import { CliResults } from '../types';
 import { nativewindUIOptions } from '../constants';
 import { getPackageManagerRunnerX } from './getPackageManager';
-import { ONLY_ERRORS, runSystemCommand } from './systemCommand';
+import { ONLY_ERRORS, quoteShellArg, runSystemCommand } from './systemCommand';
 import { spinner } from '@clack/prompts';
 
 export async function generateNWUI(cliResults: CliResults, toolbox: GluegunToolbox) {
@@ -15,6 +15,7 @@ export async function generateNWUI(cliResults: CliResults, toolbox: GluegunToolb
   const s = spinner();
 
   const runnerType = getPackageManagerRunnerX(toolbox, cliResults);
+  const projectDir = quoteShellArg(cliResults.projectName);
 
   const nativewindUIComponents =
     cliResults.packages.find((p) => p.name === 'nativewindui').options.selectedComponents ?? [];
@@ -27,8 +28,8 @@ export async function generateNWUI(cliResults: CliResults, toolbox: GluegunToolb
   s.start(`Adding nativewindui components...`);
 
   const flags = cliResults.flags.noInstall
-    ? `--yes --no-install --quiet -d ${cliResults.projectName}`
-    : `--yes --quiet -d ${cliResults.projectName}`;
+    ? `--yes --no-install --quiet -d ${projectDir}`
+    : `--yes --quiet -d ${projectDir}`;
 
   // --yes accepts installing packages without prompting
   const runCommand = runnerType === 'npx' ? `${runnerType} --yes` : runnerType;

@@ -1,7 +1,7 @@
 import { Toolbox } from 'gluegun/build/types/domain/toolbox';
 import { cancel, confirm, isCancel, select } from '@clack/prompts';
 import { CliResults, PackageManager } from '../types';
-import { runSystemCommand } from './systemCommand';
+import { quoteShellArg, runSystemCommand } from './systemCommand';
 
 export async function easConfigure(
   cliResults: CliResults,
@@ -20,6 +20,8 @@ export async function easConfigure(
   }
 
   const { projectName } = cliResults;
+  const projectDir = quoteShellArg(projectName);
+  const pnpmInstallEnv = packageManager === 'pnpm' ? { PNPM_CONFIG_STRICT_DEP_BUILDS: 'false' } : undefined;
 
   info('Configuring EAS...');
   info(``);
@@ -73,7 +75,7 @@ export async function easConfigure(
   }
 
   await runSystemCommand({
-    command: `cd ${projectName} && eas build:configure -p all`,
+    command: `cd ${projectDir} && eas build:configure -p all`,
     errorMessage: 'Error configuring EAS',
     stdio: 'inherit',
     toolbox
@@ -84,10 +86,11 @@ export async function easConfigure(
   info(`Now we'll generate the native code for your project`);
 
   await runSystemCommand({
-    command: `cd ${projectName} && ${packageManager} run prebuild`,
+    command: `cd ${projectDir} && ${packageManager} run prebuild`,
     errorMessage: 'Error generating native code',
     stdio: 'inherit',
-    toolbox
+    toolbox,
+    env: pnpmInstallEnv
   });
 
   success('Native code generated!');
