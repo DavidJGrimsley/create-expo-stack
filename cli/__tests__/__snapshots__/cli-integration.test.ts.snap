@@ -349,7 +349,6 @@ exports[`generates a project with --stylesheet --expo-router --bun --overwrite: 
   "dependencies": {
     "@expo/log-box": "",
     "@expo/vector-icons": "",
-    "@react-navigation/native": "",
     "expo": "",
     "expo-constants": "",
     "expo-font": "",
@@ -464,7 +463,6 @@ exports[`generates a project with --stylesheet --expo-router --no-install --bun 
   "dependencies": {
     "@expo/log-box": "",
     "@expo/vector-icons": "",
-    "@react-navigation/native": "",
     "expo": "",
     "expo-constants": "",
     "expo-font": "",
@@ -767,7 +765,6 @@ exports[`generates a project with --nativewind --expo-router --bun --overwrite: 
   "dependencies": {
     "@expo/log-box": "",
     "@expo/vector-icons": "",
-    "@react-navigation/native": "",
     "expo": "",
     "expo-constants": "",
     "expo-font": "",
@@ -889,7 +886,6 @@ exports[`generates a project with --nativewind --expo-router --no-install --bun 
   "dependencies": {
     "@expo/log-box": "",
     "@expo/vector-icons": "",
-    "@react-navigation/native": "",
     "expo": "",
     "expo-constants": "",
     "expo-font": "",
@@ -1015,8 +1011,6 @@ exports[`generates a project with --nativewindui --bun --overwrite: --nativewind
     "@react-native-community/datetimepicker": "",
     "@react-native-community/slider": "",
     "@react-native-picker/picker": "",
-    "@react-navigation/elements": "",
-    "@react-navigation/native": "",
     "@rn-primitives/avatar": "",
     "@rn-primitives/slot": "",
     "@shopify/flash-list": "",
@@ -1192,8 +1186,6 @@ exports[`generates a project with --nativewindui --no-install --bun --overwrite:
     "@react-native-community/datetimepicker": "",
     "@react-native-community/slider": "",
     "@react-native-picker/picker": "",
-    "@react-navigation/elements": "",
-    "@react-navigation/native": "",
     "@rn-primitives/avatar": "",
     "@rn-primitives/slot": "",
     "@shopify/flash-list": "",
@@ -1365,8 +1357,6 @@ exports[`generates a project with --nativewindui --blank --bun --overwrite: --na
   "dependencies": {
     "@expo/log-box": "",
     "@expo/vector-icons": "",
-    "@react-navigation/elements": "",
-    "@react-navigation/native": "",
     "@rn-primitives/slot": "",
     "@shopify/flash-list": "",
     "class-variance-authority": "",
@@ -1515,8 +1505,6 @@ exports[`generates a project with --nativewindui --blank --no-install --bun --ov
   "dependencies": {
     "@expo/log-box": "",
     "@expo/vector-icons": "",
-    "@react-navigation/elements": "",
-    "@react-navigation/native": "",
     "@rn-primitives/slot": "",
     "@shopify/flash-list": "",
     "class-variance-authority": "",
